@@ -12,7 +12,7 @@ import lombok.Setter;
 public class BusanFoodEntity {
 	@Id
 	private int fno;
-	private String name, type, phone, address, poster, images, time, parking, content, price;
+	private String name, type, phone, address, poster, images, time, parking, content, price, theme;
 	private int hit, jjimcount, likecount, replycount;
 	private double score;
 }
