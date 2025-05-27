@@ -6,6 +6,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.sist.web.dao.BusanFoodRepository;
+import com.sist.web.dao.BusanInfoRepository;
+import com.sist.web.entity.BusanInfoEntity;
 import com.sist.web.vo.BusanFoodVO;
 
 import lombok.RequiredArgsConstructor;
@@ -15,6 +17,7 @@ import lombok.RequiredArgsConstructor;
 public class BusanFoodServiceImpl implements BusanFoodService {
 	
 	private final BusanFoodRepository bDao;
+	private final BusanInfoRepository iDao;
 	
 	@Override
 	public List<BusanFoodVO> busanMainData() {
@@ -24,6 +27,17 @@ public class BusanFoodServiceImpl implements BusanFoodService {
 			for (BusanFoodVO vo : list) {
 				
 			}
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return list;
+	}
+	
+	@Override
+	public List<BusanInfoEntity> busanInfoMainData() {
+		List<BusanInfoEntity> list = new ArrayList<>();
+		try {
+			list = iDao.busanInfoMainData();
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
