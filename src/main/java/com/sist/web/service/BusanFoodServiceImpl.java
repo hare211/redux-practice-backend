@@ -43,4 +43,27 @@ public class BusanFoodServiceImpl implements BusanFoodService {
 		}
 		return list;
 	}
+	
+	@Override
+	public int busanFoodTotalPage() {
+		Integer totalPage = null;
+		try {
+			totalPage = bDao.busanFoodTotalPage();
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		return totalPage;
+	}
+	
+	@Override
+	public List<BusanFoodVO> busanListData(int start) {
+		List<BusanFoodVO> list = new ArrayList<>();
+		try {
+			list = bDao.busanListData(start);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return list;
+	}
 }

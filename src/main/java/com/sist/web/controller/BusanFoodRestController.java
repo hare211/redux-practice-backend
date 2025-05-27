@@ -7,6 +7,7 @@ import java.util.Map;
 
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.sist.web.entity.BusanInfoEntity;
@@ -43,6 +44,38 @@ public class BusanFoodRestController {
 			map.put("mList", mList);
 			map.put("lList", lList);
 			map.put("iList", iList);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		
+		return map;
+	}
+	
+	@GetMapping("/food/list-react")
+	public Map<String, Object> getFoodList(@RequestParam(name = "page", defaultValue = "1") int page) {
+		Map<String, Object> map = new HashMap<>();
+		int rowSize = 12;
+		//int start = (rowSize * page) - rowSize;
+		int start = (page - 1) * rowSize;
+		
+		try {
+			List<BusanFoodVO> list = bService.busanListData(start);
+			int totalPage = bService.busanFoodTotalPage();
+			
+			final int BLOCK = 10;
+			int startPage = ((page - 1) / BLOCK * BLOCK) - 1;
+			int endPage = ((page - 1) / BLOCK * BLOCK) + BLOCK;
+			
+			if (endPage > totalPage) {
+				endPage = totalPage;
+			}
+			
+			map.put("curPage", page);
+			map.put("totalPage", totalPage);
+			map.put("startPage", startPage);
+			map.put("endPage", endPage);
+			map.put("list", list);
+			
 		} catch (Exception ex) {
 			ex.printStackTrace();
 		}
