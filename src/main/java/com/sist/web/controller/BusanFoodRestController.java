@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.sist.web.entity.BusanFoodEntity;
 import com.sist.web.entity.BusanInfoEntity;
 import com.sist.web.service.BusanFoodService;
 import com.sist.web.vo.BusanFoodVO;
@@ -81,5 +82,17 @@ public class BusanFoodRestController {
 		}
 		
 		return map;
+	}
+	
+	@GetMapping("/food/detail-react")
+	public BusanFoodEntity food_detail(@RequestParam("fno") int fno) {
+		BusanFoodEntity vo = new BusanFoodEntity();
+		try {
+			vo = bService.busanDetailData(fno);
+			System.out.println(vo.toString());
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return vo;
 	}
 }

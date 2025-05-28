@@ -5,9 +5,10 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @Entity(name = "busan_food")
-@Getter @Setter
+@Getter @Setter @ToString
 @DynamicUpdate
 public class BusanFoodEntity {
 	@Id

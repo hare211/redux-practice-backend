@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.sist.web.dao.BusanFoodRepository;
 import com.sist.web.dao.BusanInfoRepository;
+import com.sist.web.entity.BusanFoodEntity;
 import com.sist.web.entity.BusanInfoEntity;
 import com.sist.web.vo.BusanFoodVO;
 
@@ -65,5 +66,16 @@ public class BusanFoodServiceImpl implements BusanFoodService {
 			ex.printStackTrace();
 		}
 		return list;
+	}
+	
+	@Override
+	public BusanFoodEntity busanDetailData(int fno) {
+		BusanFoodEntity vo = new BusanFoodEntity();
+		try {
+			vo = bDao.findByFno(fno);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return vo;
 	}
 }
