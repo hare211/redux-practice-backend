@@ -95,4 +95,20 @@ public class BusanFoodRestController {
 		}
 		return vo;
 	}
+	
+	@GetMapping("/info/list-react")
+	public Map<String, Object> info_list(@RequestParam("cno") int cno, @RequestParam("page") int page) {
+		Map<String, Object> map = new HashMap<>();
+		int rowSize = 12;
+		
+		List<BusanInfoEntity> list = bService.busanInfoListData(cno, page - 1, rowSize);
+		
+		int totalPage = bService.busanInfoTotalPage(cno);
+		
+		map.put("curPage", page);
+		map.put("totalPage", totalPage);
+		map.put("list", list);
+		
+		return map;
+	}
 }

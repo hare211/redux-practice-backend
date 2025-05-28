@@ -3,6 +3,8 @@ package com.sist.web.service;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.sist.web.dao.BusanFoodRepository;
@@ -78,4 +80,25 @@ public class BusanFoodServiceImpl implements BusanFoodService {
 		}
 		return vo;
 	}
+	
+	@Override
+	public List<BusanInfoEntity> busanInfoListData(int cno, int page, int size) {
+		Pageable pageable = PageRequest.of(page, 12);
+		
+		return iDao.busanInfoListData(cno, pageable);
+	}
+	
+	@Override
+	public int busanInfoTotalPage(Integer cno) {
+		// TODO Auto-generated method stub
+		return iDao.busanInfoTotalPage(cno);
+	}
+	
+	@Override
+	public List<BusanInfoEntity> findByTitleContaining(String title) {
+		// TODO Auto-generated method stub
+		return iDao.findByTitleContaining(title);
+	}
+	
+	
 }
